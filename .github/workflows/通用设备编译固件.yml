@@ -34,10 +34,12 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
+    # 确保只有仓库所有者或指定的用户可以触发任务
 
     steps:
       - name: Checkout
         uses: actions/checkout@main
+        # 为后续步骤提供了基础的代码环境
 
       - name: Initialization environment
         id: init
@@ -45,19 +47,29 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           docker rmi `docker images -q`
+          # 使用 docker rmi 删除所有无用的 Docker 镜像。
           [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
+          # 如果 AGENT_TOOLSDIRECTORY 环境变量存在，则删除该目录。
           sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android 2>/dev/null
+          # 删除一些不需要的目录和包。
           sudo -E apt-get -y update
+          # 更新 apt 包索引。
           sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
           sudo -E apt-get -y install $(curl -fsSL https://is.gd/depend_ubuntu2204_openwrt)
           sudo -E systemctl daemon-reload
+          # 重新加载 systemctl 服务配置。
           #sudo -E apt-get -y full-upgrade
           sudo -E apt-get -y autoremove --purge
+          # 自动清理不需要的软件包
           sudo -E apt-get clean
+          # 清理 apt 缓存
           sudo mkdir -p /workdir
           sudo chown ${USER}:${GROUPS} /workdir
+          # 创建一个工作目录，并更改其所有权。
           sudo timedatectl set-timezone "${TZ}"
+          # 设置系统时区
           echo "status=success" >> ${GITHUB_OUTPUT}
+          # 将 status=success 写入到 GITHUB_OUTPUT 文件中
 
       - name: Clone source code [ ${{ inputs.source_branch }} ]
         id: codes
