@@ -13,11 +13,3 @@ src-git helloworld https://github.com/fw876/helloworld.git
 src-git lucky https://github.com/gdy666/luci-app-lucky.git
 #passwall2
 src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git
-#网络设置向导
-src-git https://github.com/sirpdboy/luci-app-netwizard.git
-#系统高阶设置
-src-git https://github.com/sirpdboy/luci-app-advanced.git
-#网速测试
-src-git https://github.com/sirpdboy/netspeedtest.git
-# 在feeds.conf.default加入
-# src-git opentopd  https://github.com/sirpdboy/sirpdboy-package
