@@ -34,6 +34,20 @@ rm -rf feeds/luci/themes/luci-theme-argon
 
 #在线用户
 git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
+#lucky插件
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky
+#科学插件
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+#netdata中文插件
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netdata
+#netwizard设置向导
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag luci-app-netwizard
+#ddns-go插件
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag ddns-go
+#luci-app-advancedplus
+# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag luci-app-advancedplus
 
 # Themes
 # git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
