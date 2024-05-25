@@ -43,11 +43,13 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-
 #netdata中文插件
 git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netdata
 #netwizard设置向导
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag luci-app-netwizard
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netwizard
 #ddns-go插件
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag ddns-go
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package ddns-go
 #luci-app-advancedplus
-# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-packag luci-app-advancedplus
+# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-advancedplus
+#netspeedtest
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package netspeedtest
 
 # Themes
 # git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
