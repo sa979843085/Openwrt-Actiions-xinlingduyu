@@ -3237,7 +3237,7 @@ CONFIG_NODEJS_18=y
 # CONFIG_PACKAGE_micropython-mbedtls is not set
 # CONFIG_PACKAGE_micropython-nossl is not set
 CONFIG_PACKAGE_python-pip-conf=y
-CONFIG_PACKAGE_python3 =y
+CONFIG_PACKAGE_python3=y
 # CONFIG_PACKAGE_python3-aiohttp is not set
 # CONFIG_PACKAGE_python3-aiohttp-cors is not set
 # CONFIG_PACKAGE_python3-apipkg is not set
