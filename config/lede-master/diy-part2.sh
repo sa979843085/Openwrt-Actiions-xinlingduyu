@@ -30,26 +30,26 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 # rm -rf feeds/packages/net/smartdns
 rm -rf feeds/luci/themes/luci-theme-argon
 # rm -rf feeds/luci/applications/luci-app-mosdns
-# rm -rf feeds/luci/applications/luci-app-netdata
+rm -rf feeds/luci/applications/luci-app-netdata
 
 #在线用户
-git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
+git_sparse_clone main https://github.com/haiibo/packages package/luci-app-onliner
 #lucky插件
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
 #科学插件
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #netdata中文插件
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netdata
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-netdata
 #netwizard设置向导
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netwizard
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-netwizard
 #ddns-go插件
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package ddns-go
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/ddns-go
 #luci-app-advancedplus
-# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-advancedplus
+# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-advancedplus
 #netspeedtest
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package netspeedtest
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/netspeedtest
 
 # Themes
 # git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
