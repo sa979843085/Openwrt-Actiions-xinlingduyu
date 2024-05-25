@@ -15,8 +15,8 @@
 # sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile
 
 # Set etc/openwrt_release
-sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package/lean/default-settings/files/zzz-default-settings
-echo "DISTRIB_SOURCECODE='lede'" >>package/base-files/files/etc/openwrt_release
+# sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package/lean/default-settings/files/zzz-default-settings
+# echo "DISTRIB_SOURCECODE='lede'" >>package/base-files/files/etc/openwrt_release
 
 # Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.100.100）
 sed -i 's/192.168.1.1/192.168.100.100/g' package/base-files/files/bin/config_generate
@@ -32,8 +32,18 @@ rm -rf feeds/luci/themes/luci-theme-argon
 # rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
 #在线用户
-git_sparse_clone main https://github.com/haiibo/packages package/luci-app-onliner
+git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
 #lucky插件
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
 #科学插件
@@ -41,15 +51,15 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages packa
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #netdata中文插件
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-netdata
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netdata
 #netwizard设置向导
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-netwizard
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-netwizard
 #ddns-go插件
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/ddns-go
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package ddns-go
 #luci-app-advancedplus
-# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/luci-app-advancedplus
+# git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-advancedplus
 #netspeedtest
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package package/netspeedtest
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package netspeedtest
 
 # Themes
 # git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
